@@ -2,8 +2,8 @@ import pandas as pd
 import os
 import glob
 
-source_folder = './data/data/weather-PM2.5-data'
-output_folder = 'CLEAN_BIGGEST_CHUNK-weather-PM2.5-data'
+source_folder = './data/CLEAN-weather-PM2.5-data'
+output_folder = './data/CLEAN_BIGGEST_CHUNK-weather-PM2.5-data'
 
 if not os.path.exists(output_folder):
     os.makedirs(output_folder)
@@ -18,7 +18,7 @@ for file_path in csv_files:
         file_name = os.path.basename(file_path)
 
         #try with 1 file
-        if file_name != "weather-PM2.5-05T.csv":
+        if file_name != "weather-PM2.5-44T.csv":
             continue
         df = pd.read_csv(file_path)
 

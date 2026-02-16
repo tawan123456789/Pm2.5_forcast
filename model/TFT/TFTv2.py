@@ -13,7 +13,7 @@ import os
 from sklearn.metrics import r2_score
 
 # --- 1. เตรียมข้อมูล ---
-df = pd.read_csv("weather-PM2.5-05T.csv") # เปลี่ยนเป็นชื่อไฟล์จริง
+df = pd.read_csv("weather-PM2.5-44T.csv") # เปลี่ยนเป็นชื่อไฟล์จริง
 
 df = df.rename(columns={
     "Temp.": "Temp",
@@ -40,7 +40,7 @@ df['wind_dir_cos'] = np.cos(wind_rad)
 
 # TFT Requirements
 df['time_idx'] = np.arange(len(df))
-df['group_id'] = "station_05T"  # ใช้ชื่อสถานีเป็น group_id
+df['group_id'] = "station_44T"  # ใช้ชื่อสถานีเป็น group_id
 
 # --- 2. แบ่งกลุ่มตัวแปร (หัวใจสำคัญของ TFT) ---
 
@@ -57,7 +57,7 @@ unknown_reals = [
     "Humi",         # แก้ตรงนี้
     "Pres",         # แก้ตรงนี้
     "Prec",         # แก้ตรงนี้
-    "Vis",          # แก้ตรงนี้
+    # "Vis",          # แก้ตรงนี้
     "wind_dir_sin", 
     "wind_dir_cos"
 ]
@@ -126,7 +126,7 @@ tft = TemporalFusionTransformer.from_dataset(
 # --- 5. Trainer and Training ---
 
 # Configure CSVLogger
-logger = CSVLogger("logs", name="my_model_v2")
+logger = CSVLogger("logs", name="44T_model_v2")
 
 # Callbacks
 checkpoint_callback = ModelCheckpoint(
