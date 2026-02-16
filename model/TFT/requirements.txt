@@ -1,0 +1,13 @@
+# Core Data Science
+numpy==1.26.4
+pandas>=2.0.0
+matplotlib
+scikit-learn
+
+# Deep Learning & Frameworks
+torch>=2.0.0
+lightning>=2.1.0
+pytorch-forecasting>=1.0.0
+
+# Utilities
+tensorboard
