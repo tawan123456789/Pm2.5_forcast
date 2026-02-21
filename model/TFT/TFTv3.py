@@ -83,18 +83,18 @@ known_categoricals = ["day_of_week"]
 # ตัวแปรที่ไม่รู้ล่วงหน้า (Unknown $Z$): ค่า PM2.5 และสภาพอากาศที่วัดได้จริง
 # (เพราะในอนาคตเราไม่รู้ค่าที่แท้จริงของ Temp, Wind Speed, ฯลฯ จนกว่าจะถึงวันนั้น)
 unknown_reals = [
-    "PM25_lag1",         # สัญญาณหลักสุด
-    "dayofyear_cos",      # ฤดูกาลรายปีแรงมาก
-    "Pres",              # ช่วยดี
-    "Humi",              # ช่วยดี (แม้แกว่ง)
-    "Vis",               # ช่วยดี แต่แกว่งมาก (ยังควรมี)
-    "Wind_Speed",         # ช่วยดีและนิ่ง
-    "PM25_rollmean14",   # trend ดีและนิ่ง
-    "dayofyear_sin",      # เก็บคู่กับ cos (ครบวง)
-    "heatidx",            # ช่วยพอควร
-    "Prec_rollsum14",    # ฝนแบบ "สะสม 14" ช่วยจริง
-    "Wind_Dir_cos",       # mean บวกแต่ std ≈ mean (ไม่นิ่ง)
-    "Wind_Dir_sin",       # บวกเล็ก แต่พอใช้เป็นตัวเสริม
+    "PM25_lag1",         
+    "dayofyear_cos",      
+    "Pres",              
+    "Humi",              
+    "Vis",              
+    "Wind_Speed",         
+    "PM25_rollmean14",   
+    "dayofyear_sin",      
+    "heatidx",            
+    "Prec_rollsum14",    
+    "Wind_Dir_cos",       
+    "Wind_Dir_sin",       
 ]
 
 # --- 3. สร้าง Dataset ---
