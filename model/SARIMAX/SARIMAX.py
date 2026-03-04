@@ -151,36 +151,10 @@ print(results.summary().tables[0])
 # Training predictions  (in log-space)
 y_train_pred = results.fittedvalues
 
-# Validation predictions — walk-forward ONE-STEP-AHEAD
-# Each step conditions on all previous *actual* observations,
-# so errors do NOT compound across the forecast horizon.
-print("\nRunning walk-forward one-step-ahead validation …")
-with warnings.catch_warnings():
-    warnings.simplefilter("ignore")
-    val_pred_list = []
-    history_y = y_train.copy()
-    history_X = X_train.copy()
-    for i in range(len(y_val)):
-        # Re-fit model on all data seen so far
-        mdl = SARIMAX(
-            history_y,
-            exog=history_X,
-            order=best_order,
-            seasonal_order=best_seasonal,
-            enforce_stationarity=False,
-            enforce_invertibility=False,
-        )
-        fit = mdl.fit(disp=False, maxiter=300)
-        # Predict exactly 1 step ahead
-        pred = fit.forecast(steps=1, exog=X_val.iloc[[i]])
-        val_pred_list.append(pred.values[0])
-        # Append actual observation to history
-        history_y = pd.concat([history_y, y_val.iloc[[i]]])
-        history_X = pd.concat([history_X, X_val.iloc[[i]]])
-        if (i + 1) % 50 == 0:
-            print(f"  … {i+1}/{len(y_val)} steps done", flush=True)
-
-y_val_pred = pd.Series(val_pred_list, index=y_val.index)
+# Validation predictions — single forecast (no expensive re-fitting)
+print("\nForecasting validation set …")
+y_val_pred = results.forecast(steps=len(y_val), exog=X_val)
+y_val_pred = pd.Series(y_val_pred.values, index=y_val.index)
 
 # ──────────────────────────────────────────────────────────────
 # 6. Convert predictions back from log-space to original scale

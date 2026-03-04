@@ -13,8 +13,8 @@ import os
 from sklearn.metrics import r2_score
 
 # --- 1. เตรียมข้อมูล ---
-df = pd.read_csv("cleaned_features.csv") # เปลี่ยนเป็นชื่อไฟล์จริง
-
+df = pd.read_csv("05T_cleaned_features.csv") # เปลี่ยนเป็นชื่อไฟล์จริง
+  
 df = df.rename(columns={
     # space → underscore, remove dots
     "Wind Speed": "Wind_Speed",
